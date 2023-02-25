@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'Determination Sans';
+    src: url('../fonts/DTM-Sans.otf');
+}
+:root{
+    font-family: 'Determination Sans';
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    background-image: url('../img/background.jpg');
+    background-size: cover;
+    align-items: center;
+    text-align: center;
+}
+.container{
+    width: 50%;
+    margin: 0 auto;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+h1{
+    width: 60%;
+    font-weight: bold;
+    font-size: 40px;
+    color:aliceblue;
+    border-radius: 5%;
+    border: 1px black solid;
+    background-color: black;
+    margin: 0 auto;
+}
