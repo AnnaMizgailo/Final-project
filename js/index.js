@@ -53,7 +53,9 @@ function keyboardHandler(event) {
 
 // кнопка старта
 const startButton = document.getElementById('start');
+
 startButton.addEventListener('click', function() {
+    alert('Welcome');
     hero.move();
     torielleZone = true;
     window.addEventListener("keydown", keyboardHandler, true);
