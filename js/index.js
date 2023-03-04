@@ -37,9 +37,6 @@ function keyboardHandler(event) {
             case "ArrowRight":
                 hero.move(hero.x + 20, hero.y);
                 break;
-            case "Space":
-                makeBullet();
-                break;
         }
     }
     
@@ -55,6 +52,7 @@ function keyboardHandler(event) {
 const startButton = document.getElementById('start');
 
 startButton.addEventListener('click', function() {
+    console.log("1");
     alert('Welcome');
     hero.move();
     torielleZone = true;
