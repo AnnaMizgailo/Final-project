@@ -2,7 +2,7 @@
     font-family: 'Determination Sans';
     src: url('../fonts/DTM-Sans.otf');
 }
-:root{
+*{
     font-family: 'Determination Sans';
     box-sizing: border-box;
 }
@@ -29,4 +29,12 @@ h1{
     border: 1px black solid;
     background-color: black;
     margin: 0 auto;
+}
+#canvas{
+    background-color: #fff;
+    border: 3px solid black;
+}
+#start{
+    background-color: black;
+    color: white;
 }
