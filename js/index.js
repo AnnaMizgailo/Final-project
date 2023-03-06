@@ -11,8 +11,14 @@ let charaZone = false;
 
 let firstStepIntoSansZone = true;
 
-let first = true;
-let second = true;
+let firstTorielle = true;
+let secondTorielle = true;
+
+let firstSans = true;
+
+let apples = 0;
+
+let countOFSansFirstDialogue = 0;
 
 
 
@@ -52,8 +58,6 @@ function keyboardHandler(event) {
 const startButton = document.getElementById('start');
 
 startButton.addEventListener('click', function() {
-    console.log("1");
-    alert('Welcome');
     hero.move();
     torielleZone = true;
     window.addEventListener("keydown", keyboardHandler, true);
@@ -65,18 +69,18 @@ let firstTorielleDialogueInterval = setInterval(function(){
     if(torielleZone){
         torielle.move()
         if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
-            if(first){
+            if(firstTorielle){
                 let ans = TorielleFirstDialogue();
                 if(ans == 'no'){
-                    first = false;
+                    firstTorielle = false;
                 }
-            }else if(second){
+            }else if(secondTorielle){
                 TorielleSecondDialogue();
-                second = false;
+                secondTorielle = false;
             }
         }
     
-        if(!second && torielleZone){
+        if(!secondTorielle && torielleZone){
             context.beginPath();
             context.moveTo(600, 250);
             context.lineTo(250, 250);
@@ -88,10 +92,11 @@ let firstTorielleDialogueInterval = setInterval(function(){
                 hero.move(290, 290);
             }
         }
-        if(hero.x > 570 && !second){
+        if(hero.x > 570 && !secondTorielle){
             torielleZone = false;
             context.clearRect(0, 0, 600, 600);
             sansZone = true;
+            console.log(torielleZone, sansZone)
         }
     }
 }, 100);
@@ -102,6 +107,21 @@ let firstSansDialogueInterval = setInterval(function(){
             hero.move(10, hero.y);
             firstStepIntoSansZone = false;
         }
+        sans.move();
+        if((hero.x  > sans.x - 40 && hero.x < sans.x + 35) &&  (hero.y > sans.y - 30 && hero.y - 10 < sans.y + 45)){
+            if(firstSans){
+                let ans = SansFirstDialogue();
+                if(ans == 'ok'){
+                    firstSans = false;
+                }else{
+                    countOFSansFirstDialogue++;
+                }
+                if(countOFSansFirstDialogue > 2){
+
+                }
+            }
+        }
+        
         
     }
 }, 100);
@@ -114,6 +134,14 @@ let torielleCollision = setInterval(function(){
         if((hero.x  > torielle.x - 15 && hero.x < torielle.x + 35) &&  (hero.y > torielle.y - 30 && hero.y - 10 < torielle.y + 45)){
             hero.move(290, 290);
             torielle.move();
+            }
+    }
+}, 10)
+let sansCollision = setInterval(function(){
+    if(sansZone){
+        if((hero.x  > sans.x - 15 && hero.x < sans.x + 35) &&  (hero.y > sans.y - 30 && hero.y - 10 < sans.y + 45)){
+            hero.move(290, 290);
+            sans.move();
             }
     }
 }, 10)

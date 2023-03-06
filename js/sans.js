@@ -1,4 +1,4 @@
-let torielle = {
+let sans = {
     x: 400,
     y: 290,
     move: function(x = this.x, y = this.y) {
