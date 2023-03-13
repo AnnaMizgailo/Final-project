@@ -15,10 +15,10 @@ let sans = {
         img.src = '../img/sans.jpg'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 35, 43); 
+        context.drawImage(img, this.x, this.y, 40, 49); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 35, 43);
+        context.clearRect(this.x, this.y, 40, 49);
     }
 };

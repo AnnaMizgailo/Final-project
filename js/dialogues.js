@@ -9,7 +9,8 @@ function TorielleSecondDialogue(){
     alert('Dear, can you help me with an apple pie?');
     alert('I know you like it');
     let ans = prompt('So... maybe you can pick 3 golden apples for me?');
-    if(ans != 'yes'){
+    if(ans != 'yes' || ans != 'ok'){
+        alert('CaN`t YoU jUsT hElP yOuR mOtHeR?!?!')
         alert('*glitch*');
     }
     alert('I`m so happy you can help!');
@@ -21,9 +22,9 @@ function SansFirstDialogue(){
     alert('it`s very dangerous down there');
     alert('let`s have a deal');
     alert('your mama can cook a small apple pie with only 1 apple, right?');
-    alert('I`ll give you this apple and you go away from where you came and never return');
+    alert('I`ll give you deltarune, which you an exchange on whatever you want, so you can buy an apple and go away from where you came and never return');
     let ans = prompt('deal?');
-    if(ans == 'ok'){
+    if(ans == 'ok' || ans == 'yes'){
         alert('I knew you would choose this');
     }else{
         alert('don`t you know that this world is cyclical');

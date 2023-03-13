@@ -12,7 +12,7 @@ let hero = {
         this.x = x;
         this.y = y;
         context.beginPath();
-        var img = new Image();  
+        let img = new Image();  
         img.src = '../img/frisk.png'; 
         context.fillRect = "red";
         context.fill();

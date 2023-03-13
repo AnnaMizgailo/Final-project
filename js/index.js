@@ -111,15 +111,19 @@ let firstSansDialogueInterval = setInterval(function(){
         if((hero.x  > sans.x - 40 && hero.x < sans.x + 35) &&  (hero.y > sans.y - 30 && hero.y - 10 < sans.y + 45)){
             if(firstSans){
                 let ans = SansFirstDialogue();
-                if(ans == 'ok'){
+                if(ans == 'ok' || ans == 'yes'){
                     firstSans = false;
                 }else{
                     countOFSansFirstDialogue++;
                 }
                 if(countOFSansFirstDialogue > 2){
-
+                    //game over;
+                }
+                if(!firstSans){
+                    deltarune.move(200, 200);
                 }
             }
+
         }
         
         
@@ -144,4 +148,11 @@ let sansCollision = setInterval(function(){
             sans.move();
             }
     }
+}, 10)
+let deltaruneCollision = setInterval(function(){
+        if((hero.x  > deltarune.x - 15 && hero.x < deltarune.x + 35) &&  (hero.y > deltarune.y - 30 && deltarune.y - 10 < deltarune.y + 45)){
+            deltarune.count++;
+            deltarune.clear();
+            console.log(deltarune.count);
+        }
 }, 10)
