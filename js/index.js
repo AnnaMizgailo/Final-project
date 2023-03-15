@@ -15,6 +15,10 @@ let firstTorielle = true;
 let secondTorielle = true;
 
 let firstSans = true;
+let secondSans = false;
+let thirdSans = false;
+
+let firstDeltaCol = false;
 
 let apples = 0;
 
@@ -96,7 +100,6 @@ let firstTorielleDialogueInterval = setInterval(function(){
             torielleZone = false;
             context.clearRect(0, 0, 600, 600);
             sansZone = true;
-            console.log(torielleZone, sansZone)
         }
     }
 }, 100);
@@ -113,21 +116,36 @@ let firstSansDialogueInterval = setInterval(function(){
                 let ans = SansFirstDialogue();
                 if(ans == 'ok' || ans == 'yes'){
                     firstSans = false;
+                    secondSans = true;
                 }else{
                     countOFSansFirstDialogue++;
                 }
                 if(countOFSansFirstDialogue > 2){
                     //game over;
                 }
-                if(!firstSans){
-                    deltarune.move(200, 200);
                 }
             }
-
+            if(secondSans){
+                deltarune.move(200, 200);
+                let firstDelta = setInterval(deltaruneCollision, 1000);
+                let endDelta = setTimeout(function(){
+                    clearInterval(firstDelta);
+                    secondSans = false; 
+                }, 5000);
+            }
         }
-        
-        
-    }
+        if(!secondSans && sansZone && !firstSans){
+            context.beginPath();
+            context.moveTo(0, 250);
+            context.lineTo(350, 250);
+            context.lineTo(350, 350);
+            context.lineTo(0, 350);
+            context.stroke();
+            context.closePath();
+            if(hero.x > 310 || hero.y < 250 || hero.y > 350 - 40){
+                hero.move(290, 290);
+            }
+        }  
 }, 100);
 
 
@@ -149,10 +167,14 @@ let sansCollision = setInterval(function(){
             }
     }
 }, 10)
-let deltaruneCollision = setInterval(function(){
-        if((hero.x  > deltarune.x - 15 && hero.x < deltarune.x + 35) &&  (hero.y > deltarune.y - 30 && deltarune.y - 10 < deltarune.y + 45)){
+    let deltaruneCollision = function() {
+        if((hero.x  > deltarune.x - 15 && hero.x < deltarune.x + 35) &&  (hero.y > deltarune.y - 30 && deltarune.y - 10 < deltarune.y + 15)){
             deltarune.count++;
             deltarune.clear();
+            hero.move(290, 290);
             console.log(deltarune.count);
+            
         }
-}, 10)
+    }
+        
+

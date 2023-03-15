@@ -26,6 +26,7 @@ function SansFirstDialogue(){
     let ans = prompt('deal?');
     if(ans == 'ok' || ans == 'yes'){
         alert('I knew you would choose this');
+        alert('But you have only 5 seconds to take deltarune');
     }else{
         alert('don`t you know that this world is cyclical');
         alert('I will not let you out of here');
