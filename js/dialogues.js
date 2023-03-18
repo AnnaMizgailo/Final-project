@@ -9,7 +9,9 @@ function TorielleSecondDialogue(){
     alert('Dear, can you help me with an apple pie?');
     alert('I know you like it');
     let ans = prompt('So... maybe you can pick 3 golden apples for me?');
-    if(ans != 'yes' || ans != 'ok'){
+    if(ans == 'yes' || ans == 'ok'){
+        alert('Great!');
+    }else{
         alert('CaN`t YoU jUsT hElP yOuR mOtHeR?!?!')
         alert('*glitch*');
     }
