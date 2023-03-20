@@ -28,10 +28,41 @@ function SansFirstDialogue(){
     let ans = prompt('deal?');
     if(ans == 'ok' || ans == 'yes'){
         alert('I knew you would choose this');
-        alert('But you have only 5 seconds to take deltarune');
+        alert('Take it before you go');
     }else{
         alert('don`t you know that this world is cyclical');
         alert('I will not let you out of here');
     }
     return ans;
+}
+
+function SansSecondDialogue(x){
+    if(x == 0){
+        alert('Are you sure you don`t wanna take deltarune?');
+        alert('Well, that`s your choice');
+        clearInterval(firstDelta);
+        deltarune.clear();
+    }else{
+        alert('Keep your promise');
+    }
+}
+
+function TorielleThirdDialogue(){
+    alert('Hi there!');
+    alert('How are you?');
+    let ans = prompt('Have you found the way to get an apple?');
+    if(ans == 'yes'){
+        alert('I`m so proud of you!');
+        alert('Keep it going!');
+        if(deltarune.count == 0){
+            // - в карму муахахахха
+        }
+    }else{
+        if(deltarune.count == 1){
+            alert('You`re trying to hide something from me...');
+            alert('WHY?!!!!!!!!!!!!!');
+            alert('*glitch*')
+        }
+        alert('Anyway... keep it going');
+    }
 }

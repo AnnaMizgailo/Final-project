@@ -15,10 +15,10 @@ let andyne = {
         img.src = '../img/andyne.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 30, 45); 
+        context.drawImage(img, this.x, this.y, 45, 45); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 30, 45);
+        context.clearRect(this.x, this.y, 45, 45);
     }
 };

@@ -10,9 +10,11 @@ let papyrusZone = false;
 let charaZone = false;
 
 let firstStepIntoSansZone = true;
+let firstSansAboutDeltarune = true;
 
 let firstTorielle = true;
 let secondTorielle = true;
+let thirdTorielle = true;
 
 let firstSans = true;
 let secondSans = false;
@@ -23,6 +25,8 @@ let firstDeltaCol = false;
 let apples = 0;
 
 let countOFSansFirstDialogue = 0;
+
+let firstDelta;
 
 
 
@@ -97,14 +101,35 @@ let firstTorielleInterval = setInterval(function(){
                     hero.move(290, 290);
                 }
             }
-            if(hero.x > 570 && !secondTorielle){
-                torielleZone = false;
-                context.clearRect(0, 0, 600, 600);
-                sansZone = true;
-            }
+            
+        }
+        if(hero.x > 570 && !secondTorielle && !firstTorielle){
+            torielleZone = false;
+            context.clearRect(0, 0, 600, 600);
+            sansZone = true;
         }
         if(deltarune.count == 1){
-            
+            context.beginPath();
+            context.moveTo(600, 350);
+            context.lineTo(250, 350);
+            context.lineTo(250, 0);
+            context.moveTo(600, 250);
+            context.lineTo(350, 250);
+            context.lineTo(350, 0);
+            context.stroke();
+            context.closePath();
+            if((hero.x > 350 && (hero.y > 350 || hero.y < 250)) || ((hero.x > 250 && hero.x < 350) && hero.y > 350) || hero.x < 250){
+                hero.move(290, 290);
+            }
+            if(thirdTorielle && hero.x < 470){
+                TorielleThirdDialogue();
+                thirdTorielle = false;
+            }
+            if(!thirdTorielle && hero.y < 50){
+                torielleZone = false;
+                context.clearRect(0, 0, 600, 600);
+                andyneZone = true;
+            }
         }
     }
 }, 100);
@@ -130,15 +155,15 @@ let firstSansInterval = setInterval(function(){
                 }
             }
             if(secondSans){
-                deltarune.move(200, 200);
-                let firstDelta = setInterval(deltaruneCollision, 1000);
+                deltarune.move(200, 250);
+                firstDelta = setInterval(deltaruneCollision, 1000);
                 let checkDelta = setInterval(function(){
                     if(deltarune.count == 1){
                         clearInterval(firstDelta);
                         deltarune.clear();
-                        secondSans = false; 
                     }
                 }, 1000);
+                secondSans = false; 
             }
         }
         if(!secondSans && !firstSans){
@@ -153,11 +178,23 @@ let firstSansInterval = setInterval(function(){
                 hero.move(290, 290);
             }
         }if(hero.x < 20 && !secondSans && !firstStepIntoSansZone && !firstSans){ 
+            if(firstSansAboutDeltarune){
+                SansSecondDialogue(deltarune.count);
+            }
             sansZone = false;
             context.clearRect(0, 0, 600, 600);
             torielleZone = true;
+            hero.move(570, 290);
         }
     }
+}, 100);
+
+let firstAndyneDialogue = setInterval(function(){
+    if(andyneZone){
+        andyne.move();
+        hero.move(290, 570);
+    }
+
 }, 100);
 
 
