@@ -1,4 +1,4 @@
-let andyne = {
+let papyrus = {
     x: 400,
     y: 290,
     move: function(x = this.x, y = this.y) {
@@ -12,13 +12,13 @@ let andyne = {
         this.y = y;
         context.beginPath();
         var img = new Image();  
-        img.src = '../img/andyne.png'; 
+        img.src = '../img/papyrus.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 45, 45); 
+        context.drawImage(img, this.x, this.y, 115, 70); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 45, 45);
+        context.clearRect(this.x, this.y, 115, 70);
     }
 };

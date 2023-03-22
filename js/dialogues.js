@@ -66,3 +66,23 @@ function TorielleThirdDialogue(){
         alert('Anyway... keep it going');
     }
 }
+
+function UndyneFirstDialogue(){
+    alert('Hey!');
+    alert('Why did you come on my territory?!');
+    let ans = prompt('What do you want?');
+    if(ans == "apple" || ans == "deltarune"){
+        if(ans == "apple"){
+            alert('Soo... you want an apple?');
+            alert('I have something else...');
+        }
+        alert('I can give you deltarune');
+        alert('But in exchange I want you to give me a sword');
+        alert('Sure, you can do it, you smell...');
+        alert('...special.');
+        fourthTorielle = true;
+    }else{
+        alert('Haven`t got an idea what are you talking about');
+        return 'no';
+    }
+}

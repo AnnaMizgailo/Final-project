@@ -5,7 +5,7 @@ let context = canvas.getContext("2d");
 
 let torielleZone = false;
 let sansZone = false;
-let andyneZone = false;
+let undyneZone = false;
 let papyrusZone = false;
 let charaZone = false;
 
@@ -15,10 +15,13 @@ let firstSansAboutDeltarune = true;
 let firstTorielle = true;
 let secondTorielle = true;
 let thirdTorielle = true;
+let fourthTorielle = false;
 
 let firstSans = true;
 let secondSans = false;
 let thirdSans = false;
+
+let firstUndyne = true;
 
 let firstDeltaCol = false;
 
@@ -76,7 +79,7 @@ startButton.addEventListener('click', function() {
 let firstTorielleInterval = setInterval(function(){
     if(torielleZone){
         torielle.move()
-        if(deltarune.count == 0){
+        if(apples == 0){
             if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
                 if(firstTorielle){
                     let ans = TorielleFirstDialogue();
@@ -108,7 +111,7 @@ let firstTorielleInterval = setInterval(function(){
             context.clearRect(0, 0, 600, 600);
             sansZone = true;
         }
-        if(deltarune.count == 1){
+        if(apples == 1 && !fourthTorielle){
             context.beginPath();
             context.moveTo(600, 350);
             context.lineTo(250, 350);
@@ -128,7 +131,31 @@ let firstTorielleInterval = setInterval(function(){
             if(!thirdTorielle && hero.y < 50){
                 torielleZone = false;
                 context.clearRect(0, 0, 600, 600);
-                andyneZone = true;
+                undyneZone = true;        
+                hero.move(290, 570);
+            }
+        }
+        if(fourthTorielle){
+            context.beginPath();
+            context.moveTo(600, 250);
+            context.lineTo(350, 250);
+            context.lineTo(350, 0);
+            context.moveTo(0, 250);
+            context.lineTo(250, 250);
+            context.lineTo(250, 0);
+            context.moveTo(0, 350);
+            context.lineTo(600, 350);
+            context.stroke();
+            context.closePath();
+            if(hero.y > 350 || (hero.x < 250 && hero.y < 250) || (hero.x > 350 && hero.y < 250)){
+                hero.move(290, 290);
+            }
+            if(hero.x < 20){
+                torielleZone = false;
+                context.clearRect(0, 0, 600, 600);
+                papyrusZone = true;    
+                undyneZone = false;    
+                hero.move(570, 290);
             }
         }
     }
@@ -161,6 +188,9 @@ let firstSansInterval = setInterval(function(){
                     if(deltarune.count == 1){
                         clearInterval(firstDelta);
                         deltarune.clear();
+                        apples++;
+                        clearInterval(checkDelta);
+                        
                     }
                 }, 1000);
                 secondSans = false; 
@@ -180,6 +210,9 @@ let firstSansInterval = setInterval(function(){
         }if(hero.x < 20 && !secondSans && !firstStepIntoSansZone && !firstSans){ 
             if(firstSansAboutDeltarune){
                 SansSecondDialogue(deltarune.count);
+                if(deltarune.count < 1){
+                    apples++;
+                }
             }
             sansZone = false;
             context.clearRect(0, 0, 600, 600);
@@ -189,12 +222,36 @@ let firstSansInterval = setInterval(function(){
     }
 }, 100);
 
-let firstAndyneDialogue = setInterval(function(){
-    if(andyneZone){
-        andyne.move();
-        hero.move(290, 570);
+let firstUndyneInterval = setInterval(function(){
+    if(undyneZone){
+        undyne.move();
+        if(firstUndyne){
+            if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
+                let ans = UndyneFirstDialogue();
+                firstUndyne = false;
+                if(ans == 'no'){
+                    firstUndyne = true;
+                    hero.move(290, 290);
+                }
+            }
+
+        }
+        if(!firstUndyne && hero.y > 580 && hero.x < 350 && hero.x > 250){
+            undyneZone = false;
+            undyne.clear();
+            context.clearRect(0, 0, 600, 600);
+            torielleZone = true;
+            hero.move(290, 20);
+        }
+        
     }
 
+}, 100);
+
+let firstPapyrusInterval = setInterval(function(){
+    if(papyrusZone){
+        papyrus.move();
+    }
 }, 100);
 
 
@@ -226,6 +283,13 @@ let deltaruneCollision = function() {
         
     }
 }
+
+let undyneCollision = setInterval(function(){
+    if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
+        hero.move(290, 290);
+        undyne.move();
+    }
+}, 100);
 
         
 
