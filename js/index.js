@@ -16,12 +16,14 @@ let firstTorielle = true;
 let secondTorielle = true;
 let thirdTorielle = true;
 let fourthTorielle = false;
+let fifthTorielle = true;
 
 let firstSans = true;
 let secondSans = false;
 let thirdSans = false;
 
 let firstUndyne = true;
+let secondUndyne = true;
 
 let firstPapyrus = true;
 let secondPapyrus = false;
@@ -34,6 +36,8 @@ let firstDeltaCol = false;
 let apples = 0;
 
 let countOFSansFirstDialogue = 0;
+
+let ans1;
 
 let firstDelta, secondDelta;
 
@@ -141,7 +145,7 @@ let firstTorielleInterval = setInterval(function(){
                 hero.move(290, 570);
             }
         }
-        if(fourthTorielle){
+        if(fourthTorielle && secondUndyne){
             context.beginPath();
             context.moveTo(600, 250);
             context.lineTo(350, 250);
@@ -168,6 +172,60 @@ let firstTorielleInterval = setInterval(function(){
                 undyneZone = true;    
                 hero.move(290, 570);
             }
+        }
+        if(!secondUndyne && ans1 !== 'no'){
+            context.beginPath();
+            context.moveTo(250, 0);
+            context.lineTo(250, 250);
+            context.lineTo(0, 250);
+            context.moveTo(0, 350);
+            context.lineTo(250, 350);
+            context.lineTo(250, 600);
+            context.moveTo(350, 600);
+            context.lineTo(350, 350);
+            context.lineTo(600, 350);
+            context.moveTo(350, 0);
+            context.lineTo(350, 250);
+            context.lineTo(600, 250);
+            context.stroke();
+            context.closePath();
+            if((hero.x < 250 && (hero.y < 250 || hero.y > 350)) || (hero.x > 350 && (hero.y < 250 || hero.y > 350))){
+                hero.move(290, 290);
+            } 
+            if(hero.y > 250){
+                
+                if(fifthTorielle){
+                    ans1 = TorielleFourthDialogue();
+                    fifthTorielle = false;
+                }
+                if(hero.y > 550){
+                    torielleZone = false;
+                    context.clearRect(0, 0, 600, 600);
+                    charaZone = true;    
+                    hero.move(290, 10);
+                }
+                
+            }    
+            if(ans1 == 'no'){
+                context.clearRect(0, 0, 600, 600);
+                torielle.move();
+                hero.move(290, 290);
+                setInterval(function(){
+                    context.beginPath();
+                    context.moveTo(250, 250);
+                    context.lineTo(250, 350);
+                    context.lineTo(350, 350);
+                    context.lineTo(350, 250);
+                    context.lineTo(250, 250);
+                    context.stroke();
+                    context.closePath();
+                    if(hero.x - 30 < 250 || hero.x - 30 > 350 || hero.y - 38 < 250 || hero.y - 38 > 350){
+                        hero.move(290, 290);
+                    } 
+                }, 100);
+                
+
+            }   
         }
     }
 }, 100);
@@ -266,6 +324,7 @@ let firstUndyneInterval = setInterval(function(){
                     
                 }
             }, 1000); 
+            secondUndyne = false;
         }
         
     }

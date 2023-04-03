@@ -67,6 +67,30 @@ function TorielleThirdDialogue(){
     }
 }
 
+function TorielleFourthDialogue(){
+    alert('Sweetheart');
+    let ans = prompt('Do you get atleast one apple?');
+    if(deltarune.count > 0 && ans == 'yes'){  
+        alert('It`s so cool, I have no doubt you would handle it');
+        alert('Good luck and always remember that I am with you');
+    }
+    else if(deltarune.count == 0 && ans == 'no'){
+        alert('Oh honey, there is know sense to go deeper');
+        alert('Just stay with me... FOREVER');
+        return 'no';
+    }else{
+        alert('Oh...');
+        alert('I fEeL ThIs SmElL oF dIrTy LiE');
+        alert('Uh-h-h-h...');
+        alert('(in a whisper) I need to hold back');
+        setTimeout(function(){
+            alert('Why are you lying to mommy?');
+            alert('Don`t u know that`s very bad');
+            alert('Deal with her yourself, no help at my side');
+        }, 3000);
+    }
+}
+
 function UndyneFirstDialogue(){
     alert('Hey!');
     alert('Why did you come on my territory?!');
