@@ -86,3 +86,26 @@ function UndyneFirstDialogue(){
         return 'no';
     }
 }
+function PapyrusFirstDialogue(){
+    alert('Yo');
+    alert('Heyyyy, what the heck is going on&!&!&&');
+    alert('It`s unbelievable...');
+    alert('What the human is doing here in undeground????');
+    let ans = prompt('What do you want??');
+    if(ans == 'sword'){
+        alert('HAHHHHAHHAHAHAHAHAHAHAHAHAHHA');
+        alert('no way I give you any of my swords...');
+    }else{
+        alert('Bro, I haven`t got an idea what are you talking about');
+        return 'no';
+    }
+}
+function PapyrusSecondDialogue(){
+    alert('Okk, I`ll give you a sword, you`ve been very itchy');
+    alert('Just get outta here'); 
+}
+
+function UndyneSecondDialogue(){
+    alert('Oh, you bring me a sword!');
+    alert('Take your deltarune');
+}

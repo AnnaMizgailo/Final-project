@@ -23,13 +23,19 @@ let thirdSans = false;
 
 let firstUndyne = true;
 
+let firstPapyrus = true;
+let secondPapyrus = false;
+
+let papyrusCol = 0;
+
+
 let firstDeltaCol = false;
 
 let apples = 0;
 
 let countOFSansFirstDialogue = 0;
 
-let firstDelta;
+let firstDelta, secondDelta;
 
 
 
@@ -154,8 +160,13 @@ let firstTorielleInterval = setInterval(function(){
                 torielleZone = false;
                 context.clearRect(0, 0, 600, 600);
                 papyrusZone = true;    
-                undyneZone = false;    
                 hero.move(570, 290);
+            }
+            if(hero.y < 30 && !firstPapyrus){
+                torielleZone = false;
+                context.clearRect(0, 0, 600, 600);
+                undyneZone = true;    
+                hero.move(290, 570);
             }
         }
     }
@@ -238,10 +249,23 @@ let firstUndyneInterval = setInterval(function(){
         }
         if(!firstUndyne && hero.y > 580 && hero.x < 350 && hero.x > 250){
             undyneZone = false;
-            undyne.clear();
             context.clearRect(0, 0, 600, 600);
             torielleZone = true;
             hero.move(290, 20);
+        }
+        if(!firstPapyrus && (hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
+            UndyneSecondDialogue();
+            deltarune.move();
+            secondDelta = setInterval(deltaruneCollision, 1000);
+            let checkDelta = setInterval(function(){
+                if((apples == 0 && deltarune.count == 1) || deltarune.count == 2){
+                    clearInterval(checkDelta);
+                    deltarune.clear();
+                    apples++;
+                    clearInterval(checkDelta);
+                    
+                }
+            }, 1000); 
         }
         
     }
@@ -251,6 +275,33 @@ let firstUndyneInterval = setInterval(function(){
 let firstPapyrusInterval = setInterval(function(){
     if(papyrusZone){
         papyrus.move();
+        if(hero.x < papyrus.x + 40 && hero.x > papyrus.x - 40 && hero.y > 250 && hero.y < 350 && firstPapyrus){
+            PapyrusFirstDialogue();
+            if(PapyrusFirstDialogue !== 'no'){
+                firstPapyrus = false;
+                hero.move(290, 290);
+                secondPapyrus = true;
+            }
+            
+        }
+        if(!firstPapyrus && !secondPapyrus){
+            context.beginPath();
+            context.moveTo(600, 250);
+            context.lineTo(250, 250);
+            context.lineTo(250, 350);
+            context.lineTo(600, 350);
+            context.stroke();
+            context.closePath();
+            if(hero.x < 250 || hero.y < 250 || hero.y > 350 - 40){
+                hero.move(290, 290);
+            }
+            if(hero.x > 570){
+                papyrusZone = false;
+                context.clearRect(0, 0, 600, 600);
+                torielleZone = true;
+                hero.move(20, 290);
+            }
+        }
     }
 }, 100);
 
@@ -285,9 +336,28 @@ let deltaruneCollision = function() {
 }
 
 let undyneCollision = setInterval(function(){
-    if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
-        hero.move(290, 290);
-        undyne.move();
+    if(undyneZone){
+        if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
+            hero.move(290, 290);
+            undyne.move();
+        }
+    }
+}, 100);
+    
+
+let papyrusCollision = setInterval(function(){
+    if(papyrusZone){
+        if((hero.x  > papyrus.x - 15 && hero.x < papyrus.x + 35) &&  (hero.y > papyrus.y - 30 && hero.y - 10 < papyrus.y + 45)){
+            hero.move(290, 290);
+            papyrus.move();
+            if(!firstPapyrus){
+                papyrusCol++;
+            }
+            if(papyrusCol == 5 && secondPapyrus){
+                PapyrusSecondDialogue();
+                secondPapyrus = false;
+            }
+        }
     }
 }, 100);
 
