@@ -28,6 +28,8 @@ let secondUndyne = true;
 let firstPapyrus = true;
 let secondPapyrus = false;
 
+let firstChara = true;
+
 let papyrusCol = 0;
 
 
@@ -195,7 +197,7 @@ let firstTorielleInterval = setInterval(function(){
             if(hero.y > 250){
                 
                 if(fifthTorielle){
-                    ans1 = TorielleFourthDialogue();
+                    TorielleFourthDialogue();
                     fifthTorielle = false;
                 }
                 if(hero.y > 550){
@@ -219,11 +221,16 @@ let firstTorielleInterval = setInterval(function(){
                     context.lineTo(250, 250);
                     context.stroke();
                     context.closePath();
-                    if(hero.x - 30 < 250 || hero.x - 30 > 350 || hero.y - 38 < 250 || hero.y - 38 > 350){
+                    if(hero.x - 50 < 250 || hero.x + 50 > 350 || hero.y - 50 < 250 || hero.y + 50 > 350){
                         hero.move(290, 290);
                     } 
                 }, 100);
-                
+                setTimeout(() => {
+                    alert('I certainly didn`t see this coming...');
+                    alert('And it getting harder to calm down');
+                    alert('Die')
+                    GameOver();
+                }, 10000);
 
             }   
         }
@@ -247,7 +254,10 @@ let firstSansInterval = setInterval(function(){
                     countOFSansFirstDialogue++;
                 }
                 if(countOFSansFirstDialogue > 2){
-                    //game over;
+                    alert('I have warned you');
+                    alert('I see you are not paying attention to your actions')
+                    alert('A fool');
+                    GameOver();
                 }
             }
             if(secondSans){
@@ -364,6 +374,48 @@ let firstPapyrusInterval = setInterval(function(){
     }
 }, 100);
 
+let firstCharaInterval = setInterval(function(){
+    if(charaZone){
+        if(firstChara){
+            chara.move();
+            CharaFirstDialogue();
+            firstChara = false;
+            let firstCharaFight = setInterval(charaFight, 1000);
+            setTimeout(() => {
+                clearInterval(firstCharaFight);
+                let secondCharaFight = setInterval(charaFight, 700);
+                setTimeout(() => {
+                    clearInterval(secondCharaFight);
+                    let thirdCharaFight = setInterval(charaFight, 500);
+                    setTimeout(() => {
+                        clearInterval(thirdCharaFight);
+                        console.log(ans1);
+                        if(ans1 == 'yes' && deltarune.count == 2){
+                            CharaHappyEndDialogue();
+                            deltarune.move();
+                        }else if(ans1 == 'yes' && deltarune.count == 1){
+                            CharaImpossibleDialogue();
+                            let lastCharaFight = setInterval(charaFight, 100);
+                            setTimeout(() => {
+                                clearInterval(lastCharaFight);
+                                CharaLastDialogue();
+                                deltarune.move();
+                                chara.clear();
+                            }, 50000);
+                        }else if(ans1 == 'no'){
+                            CharaBadEnding();
+                            GameOver();
+                        }
+                    }, 20000);
+                }, 20000);
+               
+            }, 20000);
+           
+        }
+    }
+
+}, 100);
+
 
 
 
@@ -419,6 +471,51 @@ let papyrusCollision = setInterval(function(){
         }
     }
 }, 100);
+
+let charaCollision = setInterval(function(){
+    if(charaZone){
+        if((hero.x  > chara.x - 40 && hero.x < chara.x + 40) &&  (hero.y > chara.y - 30 && hero.y < chara.y + 30)){
+            GameOver();
+        }
+    }
+}, 100);
+
+
+
+
+
+function charaFight(){
+    if(chara.x < hero.x){
+        chara.clear();
+        chara.move(chara.x + 20, chara.y);
+    }else if(chara.x > hero.x){
+        chara.clear();
+        chara.move(chara.x - 20, chara.y);
+    }
+    if(chara.y < hero.y){
+        chara.clear();
+        chara.move(chara.x, chara.y + 20);
+    }else if(chara.y > hero.y){
+        chara.clear();
+        chara.move(chara.x, chara.y - 20);
+    }
+}
+
+function GameOver(){
+    clearInterval(firstCharaInterval);
+    clearInterval(firstTorielleInterval);
+    clearInterval(firstPapyrusInterval);
+    clearInterval(firstSansInterval);
+    clearInterval(firstUndyneInterval);
+    clearInterval(torielleCollision);
+    clearInterval(sansCollision);
+    clearInterval(undyneCollision);
+    clearInterval(papyrusCollision);
+    clearInterval(charaCollision);
+    context.clearRect(0, 0, 600, 600);
+    alert('You`ve lost');
+
+}
 
         
 

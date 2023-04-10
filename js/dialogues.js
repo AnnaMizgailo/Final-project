@@ -69,15 +69,14 @@ function TorielleThirdDialogue(){
 
 function TorielleFourthDialogue(){
     alert('Sweetheart');
-    let ans = prompt('Do you get atleast one apple?');
-    if(deltarune.count > 0 && ans == 'yes'){  
+    ans1 = prompt('Do you get atleast one apple?');
+    if(deltarune.count > 0 && ans1 == 'yes'){  
         alert('It`s so cool, I have no doubt you would handle it');
         alert('Good luck and always remember that I am with you');
     }
-    else if(deltarune.count == 0 && ans == 'no'){
+    else if(deltarune.count == 0 && ans1 == 'no'){
         alert('Oh honey, there is know sense to go deeper');
         alert('Just stay with me... FOREVER');
-        return 'no';
     }else{
         alert('Oh...');
         alert('I fEeL ThIs SmElL oF dIrTy LiE');
@@ -132,4 +131,42 @@ function PapyrusSecondDialogue(){
 function UndyneSecondDialogue(){
     alert('Oh, you bring me a sword!');
     alert('Take your deltarune');
+}
+
+function CharaFirstDialogue(){
+    alert('Hi, my old friend');
+    setTimeout(function(){
+        alert('Oh... You don`t remember me?');
+        alert('I am you');
+        alert('That`s why everyone are suspicious about you');
+        alert('I know everything about you');
+        alert('I know what are you looking for');
+        alert('Are you really think you`ll get rid of me that fast?');
+
+    }, 5000);
+}
+
+function CharaHappyEndDialogue(){
+    alert('Mom really loves us, isn`t she?');
+    alert('She will be upset if you won`t come back');
+    alert('And she will be angry if I kill you');
+    alert('Take the last deltarune and good luck');
+}
+function CharaImpossibleDialogue(){
+    alert('You are not worthy');
+    alert('Huh... Me too');
+    alert('So... I will give you another torture');
+}
+function CharaBadEnding(){
+    alert('You lied to our mother');
+    alert('How could you?');
+    alert('You must receive a punishment');
+    alert('I will torture you');
+    alert('...till the end');
+}
+
+function CharaLastDialogue(){
+    alert('Oh, maybe you are worthy');
+    alert('But still I am not');
+    alert('Farewell')
 }
