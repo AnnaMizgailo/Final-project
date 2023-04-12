@@ -1,5 +1,5 @@
 let papyrus = {
-    x: 400,
+    x: 150,
     y: 285,
     move: function(x = this.x, y = this.y) {
         // check area is out

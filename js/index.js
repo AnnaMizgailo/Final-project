@@ -39,7 +39,7 @@ let apples = 0;
 
 let countOFSansFirstDialogue = 0;
 
-let ans1;
+let ans1, ending, he;
 
 let firstDelta, secondDelta;
 
@@ -234,6 +234,15 @@ let firstTorielleInterval = setInterval(function(){
 
             }   
         }
+        if(ending){
+            if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
+                TorielleLastDialogue();
+                torielleZone = false;
+                context.clearRect(0, 0, 600, 600);
+                he = true;
+                hero.move();
+            }
+        }
     }
 }, 100);
 
@@ -392,19 +401,42 @@ let firstCharaInterval = setInterval(function(){
                         console.log(ans1);
                         if(ans1 == 'yes' && deltarune.count == 2){
                             CharaHappyEndDialogue();
-                            deltarune.move();
+                            deltarune.move(290, 200);
+                            ending = true;
                         }else if(ans1 == 'yes' && deltarune.count == 1){
                             CharaImpossibleDialogue();
                             let lastCharaFight = setInterval(charaFight, 100);
                             setTimeout(() => {
                                 clearInterval(lastCharaFight);
                                 CharaLastDialogue();
-                                deltarune.move();
+                                deltarune.move(290, 200);
                                 chara.clear();
+                                ending = true;
                             }, 50000);
                         }else if(ans1 == 'no'){
                             CharaBadEnding();
                             GameOver();
+                        }
+                        if(ending){
+                            let drawWalls = setInterval(function(){
+                                context.beginPath();
+                                context.moveTo(250, 0);
+                                context.lineTo(250, 350);
+                                context.lineTo(350, 350);
+                                context.lineTo(350, 0);
+                                context.stroke();
+                                context.closePath();
+                                if(hero.x > 350 || hero.x < 250 || hero.y > 350){
+                                    hero.move(290, 290);
+                                }
+                                if(hero.y < 20){
+                                    clearInterval(drawWalls);
+                                    charaZone = false;
+                                    context.clearRect(0, 0, 600, 600);
+                                    torielleZone = true;
+                                    hero.move(290, 570);
+                                }
+                            }, 100);
                         }
                     }, 20000);
                 }, 20000);
@@ -414,6 +446,18 @@ let firstCharaInterval = setInterval(function(){
         }
     }
 
+}, 100);
+
+let HappyEndingInterval = setInterval(() => {
+    if(he){
+        torielle.move();
+        papyrus.move();
+        sans.move();
+        undyne.move();
+        if(deltarune.count == 3){
+            chara.move(340, 200);
+        }
+    }
 }, 100);
 
 
@@ -513,6 +557,45 @@ function GameOver(){
     clearInterval(papyrusCollision);
     clearInterval(charaCollision);
     context.clearRect(0, 0, 600, 600);
+    torielleZone = false;
+    sansZone = false;
+    undyneZone = false;
+    papyrusZone = false;
+    charaZone = false;
+
+    firstStepIntoSansZone = true;
+    firstSansAboutDeltarune = true;
+
+    firstTorielle = true;
+    secondTorielle = true;
+    thirdTorielle = true;
+    fourthTorielle = false;
+    fifthTorielle = true;
+
+    firstSans = true;
+    secondSans = false;
+    thirdSans = false;
+
+    firstUndyne = true;
+    secondUndyne = true;
+
+    firstPapyrus = true;
+    secondPapyrus = false;
+
+    firstChara = true;
+
+    papyrusCol = 0;
+
+
+    firstDeltaCol = false;
+
+    apples = 0;
+
+    countOFSansFirstDialogue = 0;
+
+    ans1 = '';
+    ending = false;
+    he = false;
     alert('You`ve lost');
 
 }

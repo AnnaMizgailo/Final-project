@@ -1,6 +1,6 @@
 let undyne = {
-    x: 400,
-    y: 290,
+    x: 280,
+    y: 200,
     move: function(x = this.x, y = this.y) {
         // check area is out
         if (x < 10 || x > 590) return;

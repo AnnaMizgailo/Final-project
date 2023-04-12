@@ -90,6 +90,27 @@ function TorielleFourthDialogue(){
     }
 }
 
+function TorielleLastDialogue(){
+    alert('Sweetie!');
+    let ans = prompt('Are you alright? You look frightened...');
+    if(ans = 'yes'){
+        alert('Oh, I`m so happy you okay!!!');
+    }else{
+        alert('Oh... but still I`m happy you are here');
+    }
+    if(deltarune.count == 2){
+        alert('You have picked 2 deltarunes');
+        alert('I can receive 2 apples for that');
+        alert('Well, it will be enough to make a pie, thanks');
+    }else{
+        alert('You have picked 3 deltarunes');
+        alert('Wooow! That`s very much and it`s cool');
+        alert('But I have no doubt you will solve this');
+        alert('I love you!');
+    }
+    
+}
+
 function UndyneFirstDialogue(){
     alert('Hey!');
     alert('Why did you come on my territory?!');
