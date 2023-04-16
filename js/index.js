@@ -3,6 +3,21 @@ canvas.width = "600";
 canvas.height = "600";
 let context = canvas.getContext("2d");
 
+let torielleMusic = document.getElementById("torielle-music");
+torielleMusic.loop = true;
+let undyneMusic = document.getElementById("undyne-music");
+undyneMusic.loop = true;
+let sansMusic = document.getElementById("sans-music");
+sansMusic.loop = true;
+let papyrusMusic = document.getElementById("papyrus-music");
+papyrusMusic.loop = true;
+let charaMusic = document.getElementById("chara-music");
+charaMusic.loop = true;
+let happyMusic = document.getElementById("win-music");
+
+let badMusic = document.getElementById("game-over-music");
+
+
 let torielleZone = false;
 let sansZone = false;
 let undyneZone = false;
@@ -90,6 +105,11 @@ startButton.addEventListener('click', function() {
 
 let firstTorielleInterval = setInterval(function(){
     if(torielleZone){
+        sansMusic.pause();
+        charaMusic.pause();
+        undyneMusic.pause();
+        papyrusMusic.pause();
+        torielleMusic.play();
         torielle.move()
         if(apples == 0){
             if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
@@ -248,6 +268,8 @@ let firstTorielleInterval = setInterval(function(){
 
 let firstSansInterval = setInterval(function(){
     if(sansZone){
+        sansMusic.play();
+        torielleMusic.pause();
         if(firstStepIntoSansZone){
             hero.move(10, hero.y);
             firstStepIntoSansZone = false;
@@ -312,6 +334,8 @@ let firstSansInterval = setInterval(function(){
 
 let firstUndyneInterval = setInterval(function(){
     if(undyneZone){
+        undyneMusic.play();
+        torielleMusic.pause();
         undyne.move();
         if(firstUndyne){
             if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
@@ -352,6 +376,8 @@ let firstUndyneInterval = setInterval(function(){
 
 let firstPapyrusInterval = setInterval(function(){
     if(papyrusZone){
+        papyrusMusic.play();
+        torielleMusic.pause();
         papyrus.move();
         if(hero.x < papyrus.x + 40 && hero.x > papyrus.x - 40 && hero.y > 250 && hero.y < 350 && firstPapyrus){
             PapyrusFirstDialogue();
@@ -385,6 +411,8 @@ let firstPapyrusInterval = setInterval(function(){
 
 let firstCharaInterval = setInterval(function(){
     if(charaZone){
+        charaMusic.play();
+        torielleMusic.pause();
         if(firstChara){
             chara.move();
             CharaFirstDialogue();
@@ -450,6 +478,8 @@ let firstCharaInterval = setInterval(function(){
 
 let HappyEndingInterval = setInterval(() => {
     if(he){
+        torielleMusic.pause();
+        happyMusic.play();
         torielle.move();
         papyrus.move();
         sans.move();
@@ -546,6 +576,10 @@ function charaFight(){
 }
 
 function GameOver(){
+    torielleMusic.pause();
+    sansMusic.pause();
+    charaMusic.pause();
+    badMusic.play();
     clearInterval(firstCharaInterval);
     clearInterval(firstTorielleInterval);
     clearInterval(firstPapyrusInterval);
