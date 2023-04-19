@@ -1,5 +1,5 @@
 let undyne = {
-    x: 280,
+    x: 283,
     y: 200,
     move: function(x = this.x, y = this.y) {
         // check area is out
@@ -15,10 +15,10 @@ let undyne = {
         img.src = '../img/undyne.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 76, 70); 
+        context.drawImage(img, this.x, this.y, 35, 70); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 76, 70);
+        context.clearRect(this.x, this.y, 35, 70);
     }
 };

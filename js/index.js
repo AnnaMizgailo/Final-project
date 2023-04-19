@@ -480,13 +480,20 @@ let HappyEndingInterval = setInterval(() => {
     if(he){
         torielleMusic.pause();
         happyMusic.play();
-        torielle.move();
-        papyrus.move();
+        torielle.move(torielle.x, torielle.y - 20);
+        papyrus.move(papyrus.x, papyrus.y - 20);
         sans.move();
         undyne.move();
         if(deltarune.count == 3){
             chara.move(340, 200);
         }
+        context.beginPath();
+        var img = new Image();  
+        img.src = '../img/congrats.png'; 
+        context.fillRect = "red";
+        context.fill();
+        context.drawImage(img, 100, 282, 400, 36); 
+        context.closePath();
     }
 }, 100);
 
@@ -575,7 +582,10 @@ function charaFight(){
     }
 }
 
-function GameOver(){
+async function GameOver(){
+
+    window.removeEventListener('keydown', keyboardHandler, true);
+
     torielleMusic.pause();
     sansMusic.pause();
     charaMusic.pause();
@@ -590,7 +600,6 @@ function GameOver(){
     clearInterval(undyneCollision);
     clearInterval(papyrusCollision);
     clearInterval(charaCollision);
-    context.clearRect(0, 0, 600, 600);
     torielleZone = false;
     sansZone = false;
     undyneZone = false;
@@ -626,6 +635,19 @@ function GameOver(){
     apples = 0;
 
     countOFSansFirstDialogue = 0;
+
+    context.clearRect(0, 0, 600, 600);
+    context.beginPath();
+    let image = await (() => {
+        return new Promise((resolve, reject) => {
+            let img = new Image()
+            img.onload = () => resolve(img)
+            img.onerror = reject
+            img.src = '../img/gameover.png';
+        })
+    })();
+    context.drawImage(image, 0, 236, 600, 128);
+    context.closePath();
 
     ans1 = '';
     ending = false;
