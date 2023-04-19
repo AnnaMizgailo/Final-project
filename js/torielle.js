@@ -12,7 +12,7 @@ let torielle = {
         this.y = y;
         context.beginPath();
         var img = new Image();  
-        img.src = '../img/torielle.jpg'; 
+        img.src = '../img/torielle.png'; 
         context.fillRect = "red";
         context.fill();
         context.drawImage(img, this.x, this.y, 45, 60); 

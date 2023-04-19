@@ -105,6 +105,15 @@ startButton.addEventListener('click', function() {
 
 let firstTorielleInterval = setInterval(function(){
     if(torielleZone){
+        document.getElementsByTagName('canvas')[0].style.background = '#BB62F5';
+        context.beginPath();
+        var img = new Image();  
+        img.src = "../img/torielle_int.png";
+        var img1 = new Image();  
+        img1.src = "../img/torielle_int1.png";
+        context.drawImage(img, 350, 0, 250, 310); 
+        context.drawImage(img1, 0, 200, 250, 310); 
+        context.closePath();
         sansMusic.pause();
         charaMusic.pause();
         undyneMusic.pause();
@@ -268,6 +277,12 @@ let firstTorielleInterval = setInterval(function(){
 
 let firstSansInterval = setInterval(function(){
     if(sansZone){
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/hall.png)';
+        context.beginPath();
+        var img = new Image();  
+        img.src = "../img/sans_int.png";
+        context.drawImage(img, 350, 250, 250, 150); 
+        context.closePath();
         sansMusic.play();
         torielleMusic.pause();
         if(firstStepIntoSansZone){
@@ -334,6 +349,8 @@ let firstSansInterval = setInterval(function(){
 
 let firstUndyneInterval = setInterval(function(){
     if(undyneZone){
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/undyne_int.jpg)';
+        document.getElementsByTagName('canvas')[0].style.background = 'contain';
         undyneMusic.play();
         torielleMusic.pause();
         undyne.move();
@@ -376,6 +393,14 @@ let firstUndyneInterval = setInterval(function(){
 
 let firstPapyrusInterval = setInterval(function(){
     if(papyrusZone){
+        context.beginPath();
+        var img = new Image();  
+        img.src = "../img/papyrus_int.png";
+        var img1 = new Image();  
+        img1.src = "../img/papyrus_int2.png";
+        context.drawImage(img, 400, 400, 200, 129); 
+        context.drawImage(img1, 0, 100, 250, 200); 
+        context.closePath();
         papyrusMusic.play();
         torielleMusic.pause();
         papyrus.move();
