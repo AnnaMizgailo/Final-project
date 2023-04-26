@@ -1,6 +1,6 @@
 let torielle = {
-    x: 400,
-    y: 290,
+    x: 450,
+    y: 200,
     move: function(x = this.x, y = this.y) {
         // check area is out
         if (x < 10 || x > 590) return;
@@ -15,10 +15,10 @@ let torielle = {
         img.src = '../img/torielle.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 45, 60); 
+        context.drawImage(img, this.x, this.y, 68, 91); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 45, 60);
+        context.clearRect(this.x, this.y, 68, 91);
     }
 };

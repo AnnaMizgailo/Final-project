@@ -15,10 +15,10 @@ let undyne = {
         img.src = '../img/undyne.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 35, 70); 
+        context.drawImage(img, this.x, this.y, 53, 105); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 35, 70);
+        context.clearRect(this.x, this.y, 53, 105);
     }
 };

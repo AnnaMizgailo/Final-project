@@ -15,10 +15,10 @@ let papyrus = {
         img.src = '../img/papyrus.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 41, 70); 
+        context.drawImage(img, this.x, this.y, 62, 105); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 41, 70);
+        context.clearRect(this.x, this.y, 62, 105);
     }
 };

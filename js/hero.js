@@ -16,10 +16,10 @@ let hero = {
         img.src = '../img/frisk.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 30, 38); 
+        context.drawImage(img, this.x, this.y, 50, 63); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 30, 38);
+        context.clearRect(this.x, this.y, 50, 63);
     }
 };

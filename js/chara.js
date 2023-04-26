@@ -15,10 +15,10 @@ let chara = {
         img.src = '../img/chara.png'; 
         context.fillRect = "red";
         context.fill();
-        context.drawImage(img, this.x, this.y, 30, 40); 
+        context.drawImage(img, this.x, this.y, 45, 60); 
         context.closePath();
     },
     clear: function() {
-        context.clearRect(this.x, this.y, 30, 40);
+        context.clearRect(this.x, this.y, 45, 60);
     }
 };

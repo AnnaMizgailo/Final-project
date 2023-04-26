@@ -105,15 +105,7 @@ startButton.addEventListener('click', function() {
 
 let firstTorielleInterval = setInterval(function(){
     if(torielleZone){
-        document.getElementsByTagName('canvas')[0].style.background = '#BB62F5';
-        context.beginPath();
-        var img = new Image();  
-        img.src = "../img/torielle_int.png";
-        var img1 = new Image();  
-        img1.src = "../img/torielle_int1.png";
-        context.drawImage(img, 350, 0, 250, 310); 
-        context.drawImage(img1, 0, 200, 250, 310); 
-        context.closePath();
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/torielle_int.png)';
         sansMusic.pause();
         charaMusic.pause();
         undyneMusic.pause();
@@ -121,7 +113,7 @@ let firstTorielleInterval = setInterval(function(){
         torielleMusic.play();
         torielle.move()
         if(apples == 0){
-            if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
+            if((hero.x + 75 > torielle.x) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
                 if(firstTorielle){
                     let ans = TorielleFirstDialogue();
                     if(ans == 'no'){
@@ -277,12 +269,7 @@ let firstTorielleInterval = setInterval(function(){
 
 let firstSansInterval = setInterval(function(){
     if(sansZone){
-        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/hall.png)';
-        context.beginPath();
-        var img = new Image();  
-        img.src = "../img/sans_int.png";
-        context.drawImage(img, 350, 250, 250, 150); 
-        context.closePath();
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/sans_int.png)';
         sansMusic.play();
         torielleMusic.pause();
         if(firstStepIntoSansZone){
@@ -393,14 +380,7 @@ let firstUndyneInterval = setInterval(function(){
 
 let firstPapyrusInterval = setInterval(function(){
     if(papyrusZone){
-        context.beginPath();
-        var img = new Image();  
-        img.src = "../img/papyrus_int.png";
-        var img1 = new Image();  
-        img1.src = "../img/papyrus_int2.png";
-        context.drawImage(img, 400, 400, 200, 129); 
-        context.drawImage(img1, 0, 100, 250, 200); 
-        context.closePath();
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/papyrus_int.jpg)';
         papyrusMusic.play();
         torielleMusic.pause();
         papyrus.move();
@@ -436,6 +416,7 @@ let firstPapyrusInterval = setInterval(function(){
 
 let firstCharaInterval = setInterval(function(){
     if(charaZone){
+        document.getElementsByTagName('canvas')[0].style.backgroundImage = 'url(../img/chara_int.png)';
         charaMusic.play();
         torielleMusic.pause();
         if(firstChara){
@@ -527,7 +508,7 @@ let HappyEndingInterval = setInterval(() => {
 
 let torielleCollision = setInterval(function(){
     if(torielleZone){
-        if((hero.x  > torielle.x - 15 && hero.x < torielle.x + 35) &&  (hero.y > torielle.y - 30 && hero.y - 10 < torielle.y + 45)){
+        if((hero.x + 50 > torielle.x && hero.x < torielle.x + 60) &&  (hero.y + 63 > torielle.y && hero.y < torielle.y + 85)){
             hero.move(290, 290);
             torielle.move();
             }
