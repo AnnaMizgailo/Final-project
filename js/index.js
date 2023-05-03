@@ -225,7 +225,7 @@ let firstTorielleInterval = setInterval(function(){
                     torielleZone = false;
                     context.clearRect(0, 0, 600, 600);
                     charaZone = true;    
-                    hero.move(290, 10);
+                    hero.move(290, 200);
                 }
                 
             }    
@@ -256,7 +256,7 @@ let firstTorielleInterval = setInterval(function(){
             }   
         }
         if(ending){
-            if((hero.x  > torielle.x - 40 && hero.x < torielle.x + 25) &&  (hero.y > torielle.y && hero.y - 10 < torielle.y + 45)){
+            if(hero.y  < torielle.y + 150){
                 TorielleLastDialogue();
                 torielleZone = false;
                 context.clearRect(0, 0, 600, 600);
@@ -435,7 +435,7 @@ let firstCharaInterval = setInterval(function(){
                         console.log(ans1);
                         if(ans1 == 'yes' && deltarune.count == 2){
                             CharaHappyEndDialogue();
-                            deltarune.move(290, 200);
+                            deltarune.move(290, 220);
                             ending = true;
                         }else if(ans1 == 'yes' && deltarune.count == 1){
                             CharaImpossibleDialogue();
@@ -447,7 +447,7 @@ let firstCharaInterval = setInterval(function(){
                                 chara.clear();
                                 ending = true;
                             }, 50000);
-                        }else if(ans1 == 'no'){
+                        }else{
                             CharaBadEnding();
                             GameOver();
                         }
@@ -463,7 +463,7 @@ let firstCharaInterval = setInterval(function(){
                                 if(hero.x > 350 || hero.x < 250 || hero.y > 350){
                                     hero.move(290, 290);
                                 }
-                                if(hero.y < 20){
+                                if(hero.y < 220){
                                     clearInterval(drawWalls);
                                     charaZone = false;
                                     context.clearRect(0, 0, 600, 600);
@@ -486,12 +486,12 @@ let HappyEndingInterval = setInterval(() => {
     if(he){
         torielleMusic.pause();
         happyMusic.play();
-        torielle.move(torielle.x, torielle.y - 20);
-        papyrus.move(papyrus.x, papyrus.y - 20);
-        sans.move();
-        undyne.move();
+        torielle.move(torielle.x, 200);
+        papyrus.move(papyrus.x, 200);
+        sans.move(sans.x, 200);
+        undyne.move(undyne.x, 200);
         if(deltarune.count == 3){
-            chara.move(340, 200);
+            chara.move(papyrus.x + 80, 200);
         }
         context.beginPath();
         var img = new Image();  
@@ -516,7 +516,7 @@ let torielleCollision = setInterval(function(){
 }, 10)
 let sansCollision = setInterval(function(){
     if(sansZone){
-        if((hero.x  > sans.x - 15 && hero.x < sans.x + 35) &&  (hero.y > sans.y - 30 && hero.y - 10 < sans.y + 45)){
+        if((hero.x  > sans.x - 15 && hero.x < sans.x + 35) &&  (hero.y > sans.y - 60 && hero.y - 10 < sans.y + 45)){
             hero.move(290, 290);
             sans.move();
             }
@@ -535,7 +535,7 @@ let deltaruneCollision = function() {
 
 let undyneCollision = setInterval(function(){
     if(undyneZone){
-        if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  (hero.y > undyne.y - 30 && hero.y - 10 < undyne.y + 45)){
+        if((hero.x  > undyne.x - 15 && hero.x < undyne.x + 35) &&  ( hero.y < undyne.y + 80)){
             hero.move(290, 290);
             undyne.move();
         }
@@ -545,7 +545,7 @@ let undyneCollision = setInterval(function(){
 
 let papyrusCollision = setInterval(function(){
     if(papyrusZone){
-        if((hero.x  > papyrus.x - 15 && hero.x < papyrus.x + 35) &&  (hero.y > papyrus.y - 30 && hero.y - 10 < papyrus.y + 45)){
+        if((hero.x  > papyrus.x - 30 && hero.x < papyrus.x + 60) &&  (hero.y > papyrus.y - 60 && hero.y < papyrus.y + 120)){
             hero.move(290, 290);
             papyrus.move();
             if(!firstPapyrus){
@@ -566,6 +566,14 @@ let charaCollision = setInterval(function(){
         }
     }
 }, 100);
+let charaRoomCollision = setInterval(() => {
+    if(charaZone){
+        if(hero.y < 180){
+            hero.clear();
+            hero.y = 200;
+        }
+    }
+}, 100)
 
 
 
@@ -642,6 +650,7 @@ async function GameOver(){
 
     countOFSansFirstDialogue = 0;
 
+    document.getElementsByTagName('canvas')[0].style.backgroundColor = 'white';
     context.clearRect(0, 0, 600, 600);
     context.beginPath();
     let image = await (() => {

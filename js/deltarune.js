@@ -26,7 +26,7 @@ let deltarune = {
         //     return image;
         // })();
 
-        context.drawImage(image, this.x, this.y, 30, 30);
+        context.drawImage(image, this.x, this.y, 32, 30);
         // img.onload = function() {
             
         // };
@@ -36,6 +36,6 @@ let deltarune = {
     },
 
     clear: function() {
-        context.clearRect(this.x, this.y, 30, 30);
+        context.clearRect(this.x, this.y, 32, 30);
     }
 };
