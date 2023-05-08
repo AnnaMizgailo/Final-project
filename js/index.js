@@ -133,8 +133,8 @@ let firstTorielleInterval = setInterval(function(){
                 context.lineTo(600, 350);
                 context.stroke();
                 context.closePath();
-                if(hero.x < 250 || hero.y < 250 || hero.y > 350 - 40){
-                    hero.move(290, 290);
+                if(hero.x < 250 || hero.y < 250 || hero.y > 350 - 60){
+                    hero.move(290, 280);
                 }
             }
             
@@ -154,7 +154,7 @@ let firstTorielleInterval = setInterval(function(){
             context.lineTo(350, 0);
             context.stroke();
             context.closePath();
-            if((hero.x > 350 && (hero.y > 350 || hero.y < 250)) || ((hero.x > 250 && hero.x < 350) && hero.y > 350) || hero.x < 250){
+            if((hero.x + 50 > 350 && (hero.y + 60 > 350 || hero.y < 250)) || ((hero.x > 250 && hero.x + 50 < 350) && hero.y + 60 > 350) || hero.x < 250){
                 hero.move(290, 290);
             }
             if(thirdTorielle && hero.x < 470){
@@ -180,7 +180,7 @@ let firstTorielleInterval = setInterval(function(){
             context.lineTo(600, 350);
             context.stroke();
             context.closePath();
-            if(hero.y > 350 || (hero.x < 250 && hero.y < 250) || (hero.x > 350 && hero.y < 250)){
+            if(hero.y + 60 > 350 || (hero.x < 250 && hero.y < 250) || (hero.x + 50 > 350 && hero.y < 250)){
                 hero.move(290, 290);
             }
             if(hero.x < 20){
@@ -213,7 +213,7 @@ let firstTorielleInterval = setInterval(function(){
             context.stroke();
             context.closePath();
             if((hero.x < 250 && (hero.y < 250 || hero.y > 350)) || (hero.x > 350 && (hero.y < 250 || hero.y > 350))){
-                hero.move(290, 290);
+                hero.move(290, 280);
             } 
             if(hero.y > 250){
                 
@@ -242,7 +242,7 @@ let firstTorielleInterval = setInterval(function(){
                     context.lineTo(250, 250);
                     context.stroke();
                     context.closePath();
-                    if(hero.x - 50 < 250 || hero.x + 50 > 350 || hero.y - 50 < 250 || hero.y + 50 > 350){
+                    if(hero.x < 250 || hero.x + 50 > 350 || hero.y  < 250 || hero.y + 60 > 350){
                         hero.move(290, 290);
                     } 
                 }, 100);
